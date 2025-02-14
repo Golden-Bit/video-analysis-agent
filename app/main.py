@@ -34,7 +34,7 @@ Nota: Le descrizioni devono essere esclusivamente qualitative, estetiche, non me
 
 # Configurazione del modello
 # Inserire la propria OpenAI API Key
-#OPENAI_API_KEY = "..."
+OPENAI_API_KEY = "..."
 
 chat = ChatOpenAI(model="gpt-4o", temperature=0.25, max_tokens=2048, openai_api_key=OPENAI_API_KEY)
 

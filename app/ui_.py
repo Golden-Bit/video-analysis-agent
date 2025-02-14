@@ -130,7 +130,7 @@ Ricorda: **Non ripetere** le descrizioni dei frame precedenti, ma considerale co
 Se i frame sono termici, potresti aggiungere un commento come “A 01:05 la zona del motore risulta particolarmente calda, indicando un possibile recente utilizzo del veicolo”.
 """
 
-OPENAI_API_KEY = "....."
+OPENAI_API_KEY = "|$$$$$|"
 chat = ChatOpenAI(model="gpt-4o", temperature=0.25, max_tokens=2048, openai_api_key=OPENAI_API_KEY)
 
 MAX_PREVIOUS_DESCRIPTIONS = 100
