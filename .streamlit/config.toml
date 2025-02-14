@@ -1,0 +1,2 @@
+[server]
+maxUploadSize = 1024  # Imposta il limite a 1 GB (modifica secondo le tue esigenze)
