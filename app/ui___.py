@@ -18,7 +18,7 @@ from langchain_core.messages import AIMessage
 
 # IMPORTA la funzione Selenium per lo stream extraction da uno script esterno.
 # In questo esempio la funzione è importata da AUTO_FLYGHTHUB.cockpit
-from AUTO_FLYGHTHUB.cockpit import main as selenium_stream_main
+from AUTO_FLYGHTHUB.cockpit_ import main as selenium_stream_main
 
 # TODO:
 #  - NON RESTITUIRE ERRORE SE NON SI PUò ELABORARE IMMAIGNE, MA GESTISCI LA RISPSOTA (EV.MODIFICA PROMPT)
@@ -230,7 +230,7 @@ def analyze_stream_generator(width: int, height: int, length_style: str, additio
 # ---------------------------------
 # CONFIGURAZIONE DEL MODELLO CHATOPENAI
 # ---------------------------------
-OPENAI_API_KEY = "|$$$$$|"
+OPENAI_API_KEY = "...."
 chat = ChatOpenAI(model="gpt-4o", temperature=0.25, max_tokens=2048, openai_api_key=OPENAI_API_KEY)
 
 # ---------------------------------

@@ -16,7 +16,7 @@ from langchain.schema.messages import SystemMessage, HumanMessage
 from langchain_core.messages import AIMessage
 
 # IMPORTA la funzione main dello script Selenium che esegue il download dei file
-from AUTO_FLYGHTHUB.get_stored_file import main as selenium_main
+from AUTO_FLYGHTHUB.get_stored_file_ import main as selenium_main
 
 # ----------------------------
 # CONFIGURAZIONE DEL MODELLO LLM
@@ -231,7 +231,7 @@ def analyze_video_generator(video_data: bytes, num_frames: Optional[int], frame_
 # ----------------------------
 # CONFIGURAZIONE DEL MODELLO CHATOPENAI
 # ----------------------------
-OPENAI_API_KEY = "|$$$$$|"
+OPENAI_API_KEY = "...."
 chat = ChatOpenAI(model="gpt-4o", temperature=0.25, max_tokens=2048, openai_api_key=OPENAI_API_KEY)
 
 # ----------------------------
@@ -281,7 +281,7 @@ if start_button:
         st.error(f"Impossibile determinare la cartella Downloads: {e}")
         st.stop()
 
-    first_file = downloaded_file_names[0]
+    first_file = downloaded_file_names[1]
     video_file_path = os.path.join(downloads_folder, first_file)
     try:
         with open(video_file_path, "rb") as f:

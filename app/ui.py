@@ -79,7 +79,7 @@ Se noti un mezzo o una persona che compare in pi√π frame, potresti annotarne l‚Ä
 
 """
 
-OPENAI_API_KEY = "|$$$$$|"
+OPENAI_API_KEY = "...."
 chat = ChatOpenAI(model="gpt-4o", temperature=0.25, max_tokens=2048, openai_api_key=OPENAI_API_KEY)
 
 MAX_PREVIOUS_DESCRIPTIONS = 100
