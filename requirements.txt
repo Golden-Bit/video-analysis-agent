@@ -1,3 +1,11 @@
 fastapi
 uvicorn
 requests
+langchain-openai
+langchain-core
+langchain
+langchain-community
+selenium
+streamlit
+numpy
+opencv-python
