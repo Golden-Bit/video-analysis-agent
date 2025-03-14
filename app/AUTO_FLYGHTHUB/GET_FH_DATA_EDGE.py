@@ -49,7 +49,7 @@ def sanitize_folder_name(folder_name: str) -> str:
 # LOGIN E GESTIONE SESSIONE
 ################################################################################
 
-def start_session() -> (webdriver.Edge, WebDriverWait):
+def start_session(username, password) -> (webdriver.Edge, WebDriverWait):
     """
     Avvia la sessione del browser Microsoft Edge e si autentica su DJI FlightHub (nella prima scheda).
     Ritorna sia il driver Selenium che l'oggetto WebDriverWait, così da poterli
@@ -97,11 +97,11 @@ def start_session() -> (webdriver.Edge, WebDriverWait):
     # (2) Inserimento username e password
     email_input = driver.find_element(By.NAME, "username")
     email_input.clear()
-    email_input.send_keys(USERNAME)
+    email_input.send_keys(username)
 
     password_input = driver.find_element(By.CSS_SELECTOR, "input[aria-label='Password']")
     password_input.clear()
-    password_input.send_keys(PASSWORD)
+    password_input.send_keys(password)
 
     login_button = driver.find_element(By.CSS_SELECTOR, "button[data-usagetag='login_button']")
     login_button.click()
@@ -324,12 +324,30 @@ def download_assets_in_same_tab(
     print("[Info] Download completato in cartella:", download_dir)
     print("[Info] File scaricati:", downloaded_file_names)
 
+
+
+
+    # Rinomina i file scaricati sostituendo il carattere '+' con uno spazio
+    for file in os.listdir(download_dir):
+        if '+' in file:
+            old_path = os.path.join(download_dir, file)
+            new_name = file.replace('+', ' ')
+            new_path = os.path.join(download_dir, new_name)
+            os.rename(old_path, new_path)
+            print(f"[Rinomina] File '{file}' rinominato in '{new_name}'")
+
+
+
+    print("[Info] Download completato in cartella:", download_dir)
+    print("[Info] File scaricati:", downloaded_file_names)
+
     # 8) NON chiudiamo la scheda (rimaniamo su quest'ultima).
     #    Eventualmente, se si vuole riportare il focus alla scheda login (handle[0]):
     #    driver.switch_to.window(driver.window_handles[0])
 
     # Ritorno la lista di path completi
     downloaded_paths = [os.path.join(download_dir, fname) for fname in downloaded_file_names]
+
     return downloaded_paths
 
 

@@ -106,7 +106,7 @@ def get_system_prompt(length_style: str) -> str:
     length_instruction = get_length_instruction(length_style)
     return BASE_SYSTEM_PROMPT + "\n" + length_instruction
 
-OPENAI_API_KEY = "...."
+OPENAI_API_KEY = "..."
 chat = ChatOpenAI(model="gpt-4o", temperature=0.25, max_tokens=2048, openai_api_key=OPENAI_API_KEY)
 
 
@@ -477,14 +477,41 @@ def analyze_video_generator(
 
 st.title("Analisi Video/Immagini da Pianificazione DJI (Sessione Unica)")
 
-# STEP 1: Bottone per avviare login/creare sessione se non esiste già
 if "driver" not in st.session_state or "wait" not in st.session_state:
     st.markdown("### Effettua Login su DJI FlightHub")
+
+    # --------------------------------------
+    # (1) AGGIUNGI I DUE CAMPI PER USERNAME/PASSWORD
+    # --------------------------------------
+    username_input = st.text_input(
+        "Inserisci Username",
+        value="",
+        placeholder="Se vuoto, uso quello di default"
+    )
+    password_input = st.text_input(
+        "Inserisci Password",
+        value="",
+        placeholder="Se vuoto, uso quella di default",
+        type="password"
+    )
+
+    # --------------------------------------
+    # (2) PULSANTE CHE SCATENA IL LOGIN
+    # --------------------------------------
     login_btn = st.button("Esegui Login e Avvia Sessione Selenium")
+
     if login_btn:
+        # Se l'utente non inserisce nulla, usiamo i valori di default
+        if not username_input.strip():
+            username_input = "xr01.theia@gmail.com"
+        if not password_input.strip():
+            password_input = "LBFL2hFxFwUTKc5"
+
+
         with st.spinner("Avvio sessione e login su DJI..."):
             try:
-                driver, wait = start_session()
+                # PASSIAMO username e password A start_session
+                driver, wait = start_session(username=username_input, password=password_input)
                 st.session_state.driver = driver
                 st.session_state.wait = wait
                 st.success("Login e sessione avviati con successo!")
